@@ -1,7 +1,7 @@
 export const Genere4={
     Difficulty(req,res){
         const diff=req.params.level //using parameters
-        console.log("genere4");
+        console.log("technology");
         if(diff=='easy'){
             res.json({1:"q1",2:"q2",3:"q3",4:"q4",5:"q5",6:"q6",7:"q7",8:"q8",9:"q9",10:"q10"})
         }
