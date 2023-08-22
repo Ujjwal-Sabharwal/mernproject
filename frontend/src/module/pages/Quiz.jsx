@@ -1,31 +1,63 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Message } from '../component/Message'
 import { Button1 } from '../component/Button'
 import { Header } from '../../shared/component/Header'
 import Stack from '@mui/material/Stack';
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { useNavigate, useParams } from 'react-router-dom';
-// import { Button } from '@mui/material';
-// import { styled } from '@mui/material/styles';
+import { apiClient } from '../services/apicall';
 
-export const Quiz = () => {
-const data={1:['q1','o1*','o2*','o3*','o4*'],2:['q2','o1+','o2+','o3+','o4+'],3:['q3','o1-','o2-','o3-','o4-']}
-const end=Object.keys(data).length;
-// console.log(end);
-const navigate = useNavigate();
+export const Quiz = (props) => {
+  
   const param=useParams()
+// const data={1:['chemical formula of water','h2o','o2','co2','h2so4'],
+// 2:['chemical formula of oxygen','h2o','o2','co2','h2so4'],
+// 3:['chemical formula of carbondioxide','h2o','o2','co2','h2so4'],
+// 4:['chemical formula of sulphuric acid','h2o','o2','co2','h2so4'],
+// 5:['chemical formula of hydrochloric acid','h2o','o2','co2','hcl'],
+// "ans":['h2o','o2','co2','h2so4','hcl']}
+// const url=`/quiz/${param.genere}/${param.level}`
+const [data,setData]=useState({});
+const getdata= async ()=>{
+  try{
+  const question = await apiClient.get('http://localhost:1234/quiz/science/easy');
+  // setdata(question)
+  console.log('data',question[1][1]);
+  setData(question);
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+
+// useEffect use krna hoga
+
+useEffect( ()=>{
+ 
+ getdata();
+ 
+},[]);
+
+
+const end=Object.keys(data).length;
+
+const navigate = useNavigate();
+  
     const [count,setvalue]=useState(1)
     const next=()=>{
         setvalue(count+1)
-        if(count>end-1){
+        if(count>end-2){
+          // props.fn(data)
           navigate(path)
         }
     }
     const path=`/result/${param.genere}/${param.level}`
-    // const question=`question ${count}`
+
   return (
+  
+    <>
+    {data[1]?
     <div>
         <Stack spacing={{ sm: 7 }} direction="column" useFlexGap flexWrap="wrap">
           <h1>{param.genere} {param.level}</h1>
@@ -56,6 +88,8 @@ const navigate = useNavigate();
         </Grid>
       </Grid>
     </Stack>
-    </div>
+    </div>:<div>Loading</div>}
+    
+    </>
   )
 }
