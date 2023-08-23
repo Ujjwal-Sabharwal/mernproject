@@ -3,13 +3,28 @@ export const Genere3={
         const diff=req.params.level //using parameters
         console.log("science");
         if(diff=='easy'){
-            res.json({1:"q1",2:"q2",3:"q3",4:"q4",5:"q5",6:"q6",7:"q7",8:"q8",9:"q9",10:"q10"})
+            res.json({1:['Chemical formula of water','H2O','O2','CO2','H2SO4'],
+            2:['Chemical formula of oxygen','H20','O2','CO2','H2SO4'],
+            3:['Chemical formula of carbondioxide','H2O','O2','CO2','H2SO4'],
+            4:['Chemical formula of sulphuric acid','H2O','O2','CO2','H2SO4'],
+            5:['Chemical formula of hydrochloric acid','H2O','O2','CO2','HCL'],
+            "ans":['H2O','O2','CO2','H2SO4','HCL']})
         }
         if(diff=='medium'){
-            res.json({1:"q11",2:"q12",3:"q13",4:"q14",5:"q15",6:"q16",7:"q17",8:"q18",9:"q19",10:"q20"})
+            res.json({1:['What is the hardest natural substance on Earth','Diamond','Steal','Iron','Graphite'],
+            2:['What is the biggest planet in our solar system','Saturn','Jupiter','Uranus','Mercury'],
+            3:['How many bones do sharks have','152','206','0','57'],
+            4:['What is the rarest blood type in humans','AB-','A+','O-','O+'],
+            5:['How many states of matter are there','3','4','5','6'],
+            "ans":['Diamond','Jupiter','0','AB-','5']})
         }
         if(diff=='hard'){
-            res.json({1:"q21",2:"q22",3:"q23",4:"q24",5:"q25",6:"q26",7:"q27",8:"q28",9:"q29",10:"q30"})
+            res.json({1:['What kind of small objects composes much of the universe','Atoms','Dark matter','Anti-matter','Monster energy'],
+            2:['Give an example of a decapod','Crab','Beetel','Unicorn','Lizard'],
+            3:['Whats the shape of the Earth','Flat','Spheroid','Round','Has no shape'],
+            4:['Which is a hypothetical string theory weightless particle','Graviton','Earth Worm Jim','Anti-matter','Baryonic Matter'],
+            5:['Which of these creatures is real','Xenomorph','Fish in trees','Headcrab','Grunt Helms'],
+            "ans":['Dark matter','Crab','Spheroid','Graviton','Fish in trees']})
         }
     }
 }
